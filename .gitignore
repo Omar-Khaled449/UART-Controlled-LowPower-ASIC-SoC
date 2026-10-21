@@ -1,0 +1,73 @@
+#==============================================================================
+# Git Ignore for Digital ASIC Design & Verification Flow
+#==============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. Foundry & PDK Proprietary Files (TSMC 130nm NDA Protection)
+# -----------------------------------------------------------------------------
+*.db
+*.lib
+*.lef
+*.capTbl
+*.gds
+*.gds2
+*.cdl
+std_cells/
+captables/
+
+# -----------------------------------------------------------------------------
+# 2. Simulator Work Directories & Binary Dumps (QuestaSim / ModelSim / VCS)
+# -----------------------------------------------------------------------------
+work/
+_opt/
+_opt*/
+*.wlf
+*.vstf
+*.mpf
+*.mti
+*.ini
+transcript
+vsim.log
+vlog.log
+*.vcd
+*.fst
+*.fsdb
+
+# -----------------------------------------------------------------------------
+# 3. Synopsys Tool Working Directories & Logs (DC / Formality / DFT)
+# -----------------------------------------------------------------------------
+*.svf
+default.svf
+command.log
+filenames.log
+view_command.log
+fm_shell_command.log
+*.syn
+*.pvl
+*.mr
+*.pvk
+alib-*/
+WORK/
+FM_WORK/
+
+# -----------------------------------------------------------------------------
+# 4. Cadence / Innovus Physical Design Intermediate Files
+# -----------------------------------------------------------------------------
+*.innovus*
+encounter.log*
+encounter.cmd*
+innovus.log*
+innovus.cmd*
+*.rpt.old
+*.dat/
+*.v.gz
+
+# -----------------------------------------------------------------------------
+# 5. OS & Editor Artifacts
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.tcl-lsp/
+.vscode/
