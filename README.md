@@ -334,6 +334,25 @@ Synthesized under Worst-Case Slow-Slow Corner (**1.08V, 125°C, `tsmc13_wl10`**)
 │   ├── TB.sv                   # Self-checking, self-documenting testbench
 │   ├── run.do                  # QuestaSim execution script
 │   └── wave.do                 # Formatted waveform script
+├── Synthesis/                  # Logic Synthesis & DFT Compiler Scripts
+│   ├── syn.tcl                 # Design Compiler synthesis script
+│   ├── cons.tcl                # SDC timing constraints
+│   ├── dft_script.tcl          # Scan insertion & test protocol script
+│   └── cons_dft.tcl            # Scan timing & test mode constraints
+├── SYSTEM_spyglass/            # Lint & CDC Verification
+│   ├── TOP.SGDC                # SpyGlass CDC & clock domain constraints
+│   └── lint.prj                # SpyGlass project definition
+├── formal_verification/        # Synopsys Formality LEC Verification
+│   ├── pre_dft/                # Golden RTL vs Synthesized Netlist (391/391 passed)
+│   ├── post_dft/               # Golden RTL vs Post-DFT Netlist (391/391 passed)
+│   └── post_pnr/               # Golden RTL vs Routed PnR Netlist (391/391 passed)
+├── reports/                    # Sign-Off Quality of Results (QoR)
+│   ├── area.rpt                # Cell area breakdown
+│   ├── power.rpt               # Dynamic & leakage power breakdown
+│   ├── setup.rpt               # Setup timing report (+76.14 ns slack)
+│   └── scan_summary.rpt        # 4 scan chains, 387 scan flip-flops
+├── docs/                       # Verification Snippets & Additional Documentation
+│   └── Snippets.pdf            # SpyGlass lint & synthesis execution snippets
 ├── .gitignore                  # Foundry NDA & simulation dump filter
 └── README.md                   # Complete system technical documentation
 ```
