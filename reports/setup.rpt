@@ -1,0 +1,36 @@
+****************************************
+Report : timing
+        -path full
+        -delay max
+Design : SYS_TOP
+Version: O-2018.06-SP1
+Date   : Wed Oct  7 19:28:28 2026
+****************************************
+
+Operating Conditions: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+Wire Load Model Mode: top
+
+  Startpoint: SE (input port clocked by SCAN_CLK)
+  Endpoint: Regfile_u/mem_reg_14__7_
+            (rising edge-triggered flip-flop clocked by SCAN_CLK)
+  Path Group: SCAN_CLK
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock SCAN_CLK (rise edge)                              0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   20.00      20.00 r
+  SE (in)                                                 0.31      20.31 r
+  data arrival time                                                 23.07
+
+  clock SCAN_CLK (rise edge)                            100.00     100.00
+  clock network delay (ideal)                             0.00     100.00
+  clock uncertainty                                      -0.20      99.80
+  library setup time                                     -0.59      99.21
+  data required time                                                99.21
+  --------------------------------------------------------------------------
+  data required time                                                99.21
+  data arrival time                                                -23.07
+  --------------------------------------------------------------------------
+  slack (MET)                                                       76.14
