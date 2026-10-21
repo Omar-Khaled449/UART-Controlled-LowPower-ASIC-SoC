@@ -1,0 +1,69 @@
+#!SPYGLASS_PROJECT_FILE
+#!VERSION 3.0
+#  -------------------------------------------------------------------
+#  This is a software generated project file. Manual edits to this file could be lost during the next save operation
+#  Copyright Synopsys Inc.
+#  Last Updated By: SpyGlass SpyGlass_vL-2016.06
+#  Last Updated On Sat Oct  3 23:55:25 2026
+#
+#  -------------------------------------------------------------------
+
+##Data Import Section
+
+read_file -type verilog ../rtl/uart_pkg.sv
+read_file -type verilog ../rtl/ALU.v
+read_file -type verilog ../rtl/ASYNC_FIFO.v
+read_file -type verilog ../rtl/clk_div.v
+read_file -type verilog ../rtl/CLK_GATE.v
+read_file -type verilog ../rtl/CLKDIV_MUX.v
+read_file -type verilog ../rtl/data_sampling.v
+read_file -type verilog ../rtl/Data_syn.v
+read_file -type verilog ../rtl/deserializer.v
+read_file -type verilog ../rtl/DF_SYNC.v
+read_file -type verilog ../rtl/edge_bit_cntr.v
+read_file -type verilog ../rtl/FIFO_MEM_CNTRL.v
+read_file -type verilog ../rtl/FIFO_RD.v
+read_file -type verilog ../rtl/FIFO_WR.v
+read_file -type verilog ../rtl/MUX.sv
+read_file -type verilog ../rtl/par_chck.sv
+read_file -type verilog ../rtl/parity_calc.sv
+read_file -type verilog ../rtl/Pulse_gen.v
+read_file -type verilog ../rtl/reg_file.v
+read_file -type verilog ../rtl/rst_sync.v
+read_file -type verilog ../rtl/RX_TOP.sv
+read_file -type verilog ../rtl/serializer.v
+read_file -type verilog ../rtl/stp_checker.v
+read_file -type verilog ../rtl/strt_checker.v
+read_file -type verilog ../rtl/SYS_CTRL.sv
+read_file -type verilog ../rtl/TOP.sv
+read_file -type verilog ../rtl/TX_TOP.sv
+read_file -type verilog ../rtl/UART.sv
+read_file -type verilog ../rtl/UART_RX_FSM.sv
+read_file -type verilog ../rtl/UART_TX_FSM.sv
+read_file -type sgdc TOP.SGDC
+read_file -type gateslib ../std_cells/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.lib
+
+##Common Options Section
+
+set_option projectwdir .
+set_option language_mode mixed
+set_option designread_enable_synthesis no
+set_option designread_disable_flatten no
+set_option enableSV yes
+set_option active_methodology $SPYGLASS_HOME/GuideWare/latest/block/rtl_handoff
+
+
+##Goal Setup Section
+
+current_methodology $SPYGLASS_HOME/GuideWare/latest/block/rtl_handoff
+
+
+current_goal lint/lint_rtl -alltop
+read_file -type awl ./spyglass-1/lint/lint_rtl/spyglass-1_waiver_file.awl
+set_goal_option default_waiver_file ./spyglass-1/lint/lint_rtl/spyglass-1_waiver_file.awl
+
+
+current_goal cdc/cdc_verify_struct -alltop
+read_file -type awl ./lint/cdc/cdc_verify_struct/lint_waiver_file.awl
+set_goal_option default_waiver_file ./lint/cdc/cdc_verify_struct/lint_waiver_file.awl
+
