@@ -1,0 +1,57 @@
+ 
+****************************************
+check_design summary:
+Version:     O-2018.06-SP1
+Date:        Wed Oct  7 19:43:53 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                      9
+    Unconnected ports (LINT-28)                                     1
+    Shorted outputs (LINT-31)                                       3
+    Constant outputs (LINT-52)                                      5
+
+Cells                                                              21
+    Cells do not drive (LINT-1)                                    19
+    Connected to power or ground (LINT-32)                          2
+
+Nets                                                                2
+    Unloaded nets (LINT-2)                                          2
+--------------------------------------------------------------------------------
+
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C318' does not drive any nets. (LINT-1)
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C319' does not drive any nets. (LINT-1)
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C320' does not drive any nets. (LINT-1)
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C321' does not drive any nets. (LINT-1)
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C394' does not drive any nets. (LINT-1)
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C396' does not drive any nets. (LINT-1)
+Warning: In design 'ALU_OPER_WIDTH8_OUT_WIDTH16', cell 'C398' does not drive any nets. (LINT-1)
+Warning: In design 'clk_div_RATIO_WD8', cell 'C130' does not drive any nets. (LINT-1)
+Warning: In design 'clk_div_RATIO_WD8', cell 'C133' does not drive any nets. (LINT-1)
+Warning: In design 'serializer', cell 'C57' does not drive any nets. (LINT-1)
+Warning: In design 'UART_RX_FSM', cell 'C262' does not drive any nets. (LINT-1)
+Warning: In design 'UART_RX_FSM', cell 'B_13' does not drive any nets. (LINT-1)
+Warning: In design 'UART_RX_FSM', cell 'B_14' does not drive any nets. (LINT-1)
+Warning: In design 'UART_RX_FSM', cell 'B_15' does not drive any nets. (LINT-1)
+Warning: In design 'UART_RX_FSM', cell 'B_16' does not drive any nets. (LINT-1)
+Warning: In design 'edge_bit_cntr', cell 'C106' does not drive any nets. (LINT-1)
+Warning: In design 'edge_bit_cntr', cell 'C107' does not drive any nets. (LINT-1)
+Warning: In design 'data_sampling', cell 'C101' does not drive any nets. (LINT-1)
+Warning: In design 'deserializer', cell 'C110' does not drive any nets. (LINT-1)
+Warning: In design 'SYS_TOP', net 'FIFO_u/r_addr[3]' driven by pin 'FIFO_u/FIFO_RD_u/R_addr[3]' has no loads. (LINT-2)
+Warning: In design 'SYS_TOP', net 'FIFO_u/w_addr[3]' driven by pin 'FIFO_u/FIFO_WR_u/W_addr[3]' has no loads. (LINT-2)
+Warning: In design 'data_sampling', port 'prescale[0]' is not connected to any nets. (LINT-28)
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[7]' is connected directly to output port 'OUT[4]'. (LINT-31)
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[7]' is connected directly to output port 'OUT[5]'. (LINT-31)
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[7]' is connected directly to output port 'OUT[6]'. (LINT-31)
+Warning: In design 'SYS_TOP', a pin on submodule 'clk_div_RX_u' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'i_clk_en' is connected to logic 1. 
+Warning: In design 'SYS_TOP', a pin on submodule 'clk_div_TX_u' is connected to logic 1 or logic 0. (LINT-32)
+   Pin 'i_clk_en' is connected to logic 1. 
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[7]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[6]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[5]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'CLKDIV_MUX_WIDTH8', output port 'OUT[4]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'UART_RX_FSM', output port 'dat_samp_en' is connected directly to 'logic 1'. (LINT-52)
+1

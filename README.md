@@ -346,11 +346,35 @@ Synthesized under Worst-Case Slow-Slow Corner (**1.08V, 125°C, `tsmc13_wl10`**)
 │   ├── pre_dft/                # Golden RTL vs Synthesized Netlist (391/391 passed)
 │   ├── post_dft/               # Golden RTL vs Post-DFT Netlist (391/391 passed)
 │   └── post_pnr/               # Golden RTL vs Routed PnR Netlist (391/391 passed)
-├── reports/                    # Sign-Off Quality of Results (QoR)
-│   ├── area.rpt                # Cell area breakdown
-│   ├── power.rpt               # Dynamic & leakage power breakdown
-│   ├── setup.rpt               # Setup timing report (+76.14 ns slack)
-│   └── scan_summary.rpt        # 4 scan chains, 387 scan flip-flops
+├── netlists/                   # Gate-Level Netlists Across ASIC Flow Stages
+│   ├── 1_synthesis/            # Stage 1: Design Compiler post-synthesis netlist
+│   │   └── SYS_TOP.v
+│   ├── 2_dft/                  # Stage 2: DFT Compiler scan-inserted netlist (4 chains)
+│   │   └── SYS_TOP.v
+│   └── 3_pnr/                  # Stage 3: Cadence Innovus post-route physical netlists
+│       ├── SYS_TOP.v           # Detailed routed netlist
+│       └── SYS_TOP_pg.v        # Routed netlist with VDD/VSS power & ground rails
+├── reports/                    # Quality of Results (QoR) by Implementation Stage
+│   ├── 1_synthesis/            # Stage 1 Synthesis: Area, Power, Setup, Hold, QoR, Clocks
+│   │   ├── area.rpt
+│   │   ├── power.rpt
+│   │   ├── setup_timing.rpt
+│   │   ├── hold_timing.rpt
+│   │   ├── qor.rpt
+│   │   ├── clock.rpt
+│   │   └── constraints.rpt
+│   ├── 2_dft/                  # Stage 2 DFT: Scan preview, DRC pre/post, Area, Power, Timing
+│   │   ├── scan_summary.rpt    # 4 chains, 387 scan flip-flops
+│   │   ├── dft_drc_post.rpt    # Post-scan DRC verification
+│   │   ├── area.rpt
+│   │   ├── power.rpt
+│   │   ├── setup.rpt
+│   │   └── hold.rpt
+│   └── 3_pnr/                  # Stage 3 Physical Sign-Off: DRC, LVS, Antenna & Power
+│       ├── SYS_TOP.conn.rpt    # LVS Connectivity Check (0 violations)
+│       ├── SYS_TOP.geom.rpt    # Geometry DRC Check (0 violations)
+│       ├── SYS_TOP.antenna.rpt # Antenna DRC Check (0 violations)
+│       └── power.rpt           # Post-route physical power report
 ├── docs/                       # Verification Snippets & Additional Documentation
 │   └── Snippets.pdf            # SpyGlass lint & synthesis execution snippets
 ├── .gitignore                  # Foundry NDA & simulation dump filter
