@@ -20,8 +20,8 @@ The subsystem interfaces with a master controller via an asynchronous, full-dupl
 
 ### Key Architectural Highlights
 - **Dual Independent Clock Domains**:
-  - `REF_CLK` (**50.0 MHz**, $T = 20\text{ ns}$): Powers the Core Processing Domain, including the System Controller FSM, Register File, and ALU.
-  - `UART_CLK` (**3.6864 MHz**, $T \approx 271.27\text{ ns}$): Powers the Serial Communications & Baud Clock Division Domain.
+  - `REF_CLK` (**50.0 MHz**, T = 20 ns): Powers the Core Processing Domain, including the System Controller FSM, Register File, and ALU.
+  - `UART_CLK` (**3.6864 MHz**, T ≈ 271.27 ns): Powers the Serial Communications & Baud Clock Division Domain.
 - **Robust Clock Domain Crossing (CDC) Protection**:
   - Dual-flop Reset Synchronizers (Asynchronous Assert, Synchronous Deassert).
   - Multi-stage Data Synchronizer with pulse-enable sequencing for UART reception.
@@ -131,27 +131,27 @@ Supports 16 operations with a 16-bit wide output to support full multiplier dyna
 
 | Opcode | Operation | Function | Description |
 | :---: | :---: | :---: | :--- |
-| `4'b0000` | **ADD** | $A + B$ | 8-bit unsigned addition |
-| `4'b0001` | **SUB** | $A - B$ | 8-bit unsigned subtraction |
-| `4'b0010` | **MUL** | $A \times B$ | 8-bit unsigned multiplication (16-bit result) |
-| `4'b0011` | **DIV** | $A / B$ | 8-bit integer division with zero-division safeguard |
-| `4'b0100` | **AND** | $A \ \& \ B$ | Bitwise AND |
-| `4'b0101` | **OR** | $A \ \| \ B$ | Bitwise OR |
-| `4'b0110` | **NAND** | $\sim(A \ \& \ B)$ | Bitwise NAND |
-| `4'b0111` | **NOR** | $\sim(A \ \| \ B)$ | Bitwise NOR |
-| `4'b1000` | **XOR** | $A \ \oplus \ B$ | Bitwise XOR |
-| `4'b1001` | **XNOR** | $\sim(A \ \oplus \ B)$ | Bitwise XNOR |
-| `4'b1010` | **CMP EQ** | $A == B$ | Compare Equal (Returns 16'h0001 if true) |
-| `4'b1011` | **CMP GT** | $A > B$ | Compare Greater-Than (Returns 16'h0002 if true) |
-| `4'b1100` | **CMP LT** | $A < B$ | Compare Less-Than (Returns 16'h0003 if true) |
-| `4'b1101` | **SHR** | $A \gg 1$ | Logical shift right by 1 bit |
-| `4'b1110` | **SHL** | $A \ll 1$ | Logical shift left by 1 bit |
-| `4'b1111` | **NOP** | $0$ | Idle / Default state |
+| `4'b0000` | **ADD** | `A + B` | 8-bit unsigned addition |
+| `4'b0001` | **SUB** | `A - B` | 8-bit unsigned subtraction |
+| `4'b0010` | **MUL** | `A × B` | 8-bit unsigned multiplication (16-bit result) |
+| `4'b0011` | **DIV** | `A / B` | 8-bit integer division with zero-division safeguard |
+| `4'b0100` | **AND** | `A & B` | Bitwise AND |
+| `4'b0101` | **OR** | `A \| B` | Bitwise OR |
+| `4'b0110` | **NAND** | `~(A & B)` | Bitwise NAND |
+| `4'b0111` | **NOR** | `~(A \| B)` | Bitwise NOR |
+| `4'b1000` | **XOR** | `A ^ B` | Bitwise XOR |
+| `4'b1001` | **XNOR** | `~(A ^ B)` | Bitwise XNOR |
+| `4'b1010` | **CMP EQ** | `A == B` | Compare Equal (Returns 16'h0001 if true) |
+| `4'b1011` | **CMP GT** | `A > B` | Compare Greater-Than (Returns 16'h0002 if true) |
+| `4'b1100` | **CMP LT** | `A < B` | Compare Less-Than (Returns 16'h0003 if true) |
+| `4'b1101` | **SHR** | `A >> 1` | Logical shift right by 1 bit |
+| `4'b1110` | **SHL** | `A << 1` | Logical shift left by 1 bit |
+| `4'b1111` | **NOP** | `16'h0000` | Idle / Default state |
 
 - **Clock Gating**: Integrated latch-based Clock Gating cell (`CLK_GATE`) gates `REF_CLK` to produce `GATED_CLK`. The ALU logic toggles only during `OPERAND_A`, `OPERAND_B`, `ALU_FUNCTION`, and `ALU_OUT` states, completely eliminating idle clock tree switching power.
 
 ### 5. Register File (`Reg_FIle`)
-- 16 registers $\times$ 8-bit wide array.
+- 16 registers × 8-bit wide array.
 - Dedicated configuration mappings:
   - `REG0` (Address `0x0`): Pre-loaded Operand A.
   - `REG1` (Address `0x1`): Pre-loaded Operand B.
@@ -249,14 +249,14 @@ Synthesized under Worst-Case Slow-Slow Corner (**1.08V, 125°C, `tsmc13_wl10`**)
 | **Technology Node** | **TSMC 130 nm** | `scmetro_tsmc_cl013g_rvt_ss_1p08v_125c` |
 | **Total Leaf Cell Count** | **2,285 cells** | 1,897 Combinational + 388 Sequential |
 | **Inverters / Buffers** | **466 cells** | 373 Inverters + 93 Buffers |
-| **Cell Area** | **$29,615.2\,\mu\text{m}^2$** | Gate area |
-| **Total Design Area** | **$324,363.3\,\mu\text{m}^2$** | Including net routing area |
-| **Dynamic Power** | **$0.495\text{ mW}$** | Clock gating saves ~38% active ALU power |
-| **Leakage Power** | **$19.2\,\mu\text{W}$** | At 125°C worst-case corner |
-| **Total Power** | **$0.515\text{ mW}$** | Ultra-low power |
-| **Worst Negative Slack (WNS)** | **$0.00\text{ ns}$** | **Zero Setup Violations** |
-| **Total Negative Slack (TNS)** | **$0.00\text{ ns}$** | Clean timing closure across all paths |
-| **Hold Violations** | **$0.00\text{ ns}$** | **Zero Hold Violations** |
+| **Cell Area** | **29,615.2 µm²** | Gate area |
+| **Total Design Area** | **324,363.3 µm²** | Including net routing area |
+| **Dynamic Power** | **0.495 mW** | Clock gating saves ~38% active ALU power |
+| **Leakage Power** | **19.2 µW** | At 125°C worst-case corner |
+| **Total Power** | **0.515 mW** | Ultra-low power |
+| **Worst Negative Slack (WNS)** | **0.00 ns** | **Zero Setup Violations** |
+| **Total Negative Slack (TNS)** | **0.00 ns** | Clean timing closure across all paths |
+| **Hold Violations** | **0.00 ns** | **Zero Hold Violations** |
 | **DRC Violations** | **0** | 0 Max Capacitance, 0 Max Transition |
 
 ### 3. Logic Equivalence Checking (Synopsys Formality)
